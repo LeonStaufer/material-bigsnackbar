@@ -4,7 +4,7 @@ The big snackbar component is an enhanced version of the standard [MDL snackbar 
 
 ![Screenshot of page using big snackbars](https://raw.githubusercontent.com/LeonStaufer/material-bigsnackbar/master/assets/overview.jpg)
 
-Visit the live preview and documentation [here](https://).
+Visit the live preview and documentation [here](https://leonstaufer.github.io/material-bigsnackbar/).
 
 ## Basic usage
 
