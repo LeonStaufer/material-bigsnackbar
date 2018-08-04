@@ -1,0 +1,33 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="material.css">
+    <link rel="stylesheet" href="large.css">
+    <script src="material.js"></script>
+    <script src="large.js"></script>
+</head>
+
+<body>
+    <button onclick="show()">Show</button>
+    <div id="bigsnackbar-example" class="mdl-js-bigsnackbar mdl-bigsnackbar">
+        <div class="mdl-bigsnackbar__text"></div>
+        <button class="mdl-bigsnackbar__action" type="button">Close</button>
+    </div>
+    <script>
+        var snackbarContainer = document.querySelector('#bigsnackbar-example');
+
+        function show() {
+            var data = {
+                message: 'Message Sent',
+                actionHandler: function(event) {},
+                actionText: 'Undo',
+                timeout: 10000
+            };
+            snackbarContainer.MaterialBigSnackbar.showBigSnackbar(data);
+        }
+
+    </script>
+</body>
+
+</html>
