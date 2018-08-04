@@ -1,15 +1,16 @@
 /**
-   * Class constructor for BigSnackbar MDL component.
-   * Implements MDL component design pattern defined at:
-   * https://github.com/jasonmayes/mdl-component-design-pattern
-   *
-   * @constructor
-   * @param {HTMLElement} element The element that will be upgraded.
-   */
-var MaterialBigSnackbar = function MaterialBgSnackbar(element) {
+ * Class constructor for BigSnackbar MDL component.
+ * Implements MDL component design pattern defined at:
+ * https://github.com/jasonmayes/mdl-component-design-pattern
+ *
+ * @constructor
+ * @param {HTMLElement} element The element that will be upgraded.
+ */
+var MaterialBigSnackbar = function MaterialBigSnackbar(element) {
     this.element_ = element;
     this.textElement_ = this.element_.querySelector('.' + this.cssClasses_.MESSAGE);
-    this.actionElement_ = this.element_.querySelector('.' + this.cssClasses_.ACTION);
+    this.actionElement_ = this.element_.querySelectorAll('.' + this.cssClasses_.ACTION);
+    console.warn(this.actionElement_);
     if (!this.textElement_) {
         throw new Error('There must be a message element for a bigsnackbar.');
     }
@@ -17,6 +18,7 @@ var MaterialBigSnackbar = function MaterialBgSnackbar(element) {
         throw new Error('There must be an action element for a bigsnackbar.');
     }
     this.active = false;
+    this.actions_ = [];
     this.actionHandler_ = undefined;
     this.message_ = undefined;
     this.actionText_ = undefined;
@@ -25,23 +27,23 @@ var MaterialBigSnackbar = function MaterialBgSnackbar(element) {
 };
 window['MaterialBigSnackbar'] = MaterialBigSnackbar;
 /**
-   * Store constants in one place so they can be updated easily.
-   *
-   * @enum {string | number}
-   * @private
-   */
+ * Store constants in one place so they can be updated easily.
+ *
+ * @enum {string | number}
+ * @private
+ */
 MaterialBigSnackbar.prototype.Constant_ = {
     // The duration of the bigsnackbar show/hide animation, in ms.
     ANIMATION_LENGTH: 250
 };
 /**
-   * Store strings for class names defined by this component that are used in
-   * JavaScript. This allows us to simply change it in one place should we
-   * decide to modify at a later date.
-   *
-   * @enum {string}
-   * @private
-   */
+ * Store strings for class names defined by this component that are used in
+ * JavaScript. This allows us to simply change it in one place should we
+ * decide to modify at a later date.
+ *
+ * @enum {string}
+ * @private
+ */
 MaterialBigSnackbar.prototype.cssClasses_ = {
     SNACKBAR: 'mdl-bigsnackbar',
     MESSAGE: 'mdl-bigsnackbar__text',
@@ -49,10 +51,10 @@ MaterialBigSnackbar.prototype.cssClasses_ = {
     ACTIVE: 'mdl-bigsnackbar--active'
 };
 /**
-   * Display the bigsnackbar.
-   *
-   * @private
-   */
+ * Display the bigsnackbar.
+ *
+ * @private
+ */
 MaterialBigSnackbar.prototype.displayBigSnackbar_ = function () {
     this.element_.setAttribute('aria-hidden', 'true');
     if (this.actionHandler_) {
@@ -60,18 +62,27 @@ MaterialBigSnackbar.prototype.displayBigSnackbar_ = function () {
         this.actionElement_.addEventListener('click', this.actionHandler_);
         this.setActionHidden_(false);
     }
+    if (this.actions_) {
+        //TODO: loop through actions
+        this.actions_.forEach(function (actionPair) {
+            this.actionElement_.textContent = actionPair[0];
+            this.actionElement_.addEventListener('click', actionPair[1]);
+        });
+        //this.setActionHidden_(false);
+
+    }
     this.textElement_.textContent = this.message_;
     this.element_.classList.add(this.cssClasses_.ACTIVE);
     this.element_.setAttribute('aria-hidden', 'false');
 
-    if(this.timeout_ != null) setTimeout(this.cleanup_.bind(this), this.timeout_);
+    if (this.timeout_ != null) setTimeout(this.cleanup_.bind(this), this.timeout_);
 };
 /**
-   * Show the big snackbar.
-   *
-   * @param {Object} data The data for the notification.
-   * @public
-   */
+ * Show the big snackbar.
+ *
+ * @param {Object} data The data for the notification.
+ * @public
+ */
 MaterialBigSnackbar.prototype.showBigSnackbar = function (data) {
     if (data === undefined) {
         throw new Error('Please provide a data object with at least a message to display.');
@@ -87,6 +98,14 @@ MaterialBigSnackbar.prototype.showBigSnackbar = function (data) {
     } else {
         this.active = true;
         this.message_ = data['message'];
+        if (data['actions']) {
+            data['actions'].forEach(function (actionPair) {
+                actionPair.forEach(function (actionObj) {
+                    console.log(actionObj);
+                    console.info(MaterialBigSnackbar.actions_)
+                });
+            });
+        }
         if (data['timeout']) {
             this.timeout_ = data['timeout'];
         }
@@ -101,29 +120,29 @@ MaterialBigSnackbar.prototype.showBigSnackbar = function (data) {
 };
 MaterialBigSnackbar.prototype['showBigSnackbar'] = MaterialBigSnackbar.prototype.showBigSnackbar;
 /**
-   * Check if the queue has items within it.
-   * If it does, display the next entry.
-   *
-   * @private
-   */
+ * Check if the queue has items within it.
+ * If it does, display the next entry.
+ *
+ * @private
+ */
 MaterialBigSnackbar.prototype.checkQueue_ = function () {
     if (this.queuedNotifications_.length > 0) {
         this.showBigSnackbar(this.queuedNotifications_.shift());
     }
 };
 /**
-   * Easier function to read for closing Snackbar
-   *
-   * @public
-   */
+ * Easier function to read for closing Snackbar
+ *
+ * @public
+ */
 MaterialBigSnackbar.prototype.closeBigSnackbar = function () {
     this.cleanup_();
 };
 /**
-   * Cleanup the bigsnackbar event listeners and accessiblity attributes.
-   *
-   * @private
-   */
+ * Cleanup the bigsnackbar event listeners and accessiblity attributes.
+ *
+ * @private
+ */
 MaterialBigSnackbar.prototype.cleanup_ = function () {
     this.element_.classList.remove(this.cssClasses_.ACTIVE);
     setTimeout(function () {
@@ -142,16 +161,20 @@ MaterialBigSnackbar.prototype.cleanup_ = function () {
     }.bind(this), this.Constant_.ANIMATION_LENGTH);
 };
 /**
-   * Set the action handler hidden state.
-   *
-   * @param {boolean} value
-   * @private
-   */
+ * Set the action handler hidden state.
+ *
+ * @param {boolean} value
+ * @private
+ */
 MaterialBigSnackbar.prototype.setActionHidden_ = function (value) {
     if (value) {
-        this.actionElement_.setAttribute('aria-hidden', 'true');
+        this.actionElement_.forEach(function (element) {
+            element.setAttribute('aria-hidden', 'true');
+        });
     } else {
-        this.actionElement_.removeAttribute('aria-hidden');
+        this.actionElement_.forEach(function (element) {
+            element.removeAttribute('aria-hidden');
+        });
     }
 };
 // The component registers itself. It can assume componentHandler is available
