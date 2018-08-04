@@ -9,19 +9,16 @@
 var MaterialBigSnackbar = function MaterialBigSnackbar(element) {
     this.element_ = element;
     this.textElement_ = this.element_.querySelector('.' + this.cssClasses_.MESSAGE);
-    this.actionElement_ = this.element_.querySelectorAll('.' + this.cssClasses_.ACTION);
-    console.warn(this.actionElement_);
+    this.actionElements_ = this.element_.querySelectorAll('.' + this.cssClasses_.ACTION);
     if (!this.textElement_) {
-        throw new Error('There must be a message element for a bigsnackbar.');
+        throw new Error('There must be a message element for a big snackbar.');
     }
-    if (!this.actionElement_) {
-        throw new Error('There must be an action element for a bigsnackbar.');
+    if (!this.actionElements_) {
+        throw new Error('There must be an action element for a big snackbar.');
     }
     this.active = false;
     this.actions_ = [];
-    this.actionHandler_ = undefined;
     this.message_ = undefined;
-    this.actionText_ = undefined;
     this.queuedNotifications_ = [];
     this.setActionHidden_(true);
 };
@@ -57,19 +54,12 @@ MaterialBigSnackbar.prototype.cssClasses_ = {
  */
 MaterialBigSnackbar.prototype.displayBigSnackbar_ = function () {
     this.element_.setAttribute('aria-hidden', 'true');
-    if (this.actionHandler_) {
-        this.actionElement_.textContent = this.actionText_;
-        this.actionElement_.addEventListener('click', this.actionHandler_);
-        this.setActionHidden_(false);
-    }
     if (this.actions_) {
-        //TODO: loop through actions
-        this.actions_.forEach(function (actionPair) {
-            this.actionElement_.textContent = actionPair[0];
-            this.actionElement_.addEventListener('click', actionPair[1]);
-        });
-        //this.setActionHidden_(false);
-
+        for (let i = 0; i < this.actions_.length; i++) {
+            this.actionElements_[i].textContent = this.actions_[i][0];
+            this.actionElements_[i].addEventListener('click', this.actions_[i][1]);
+        }
+        this.setActionHidden_(false);
     }
     this.textElement_.textContent = this.message_;
     this.element_.classList.add(this.cssClasses_.ACTIVE);
@@ -90,30 +80,24 @@ MaterialBigSnackbar.prototype.showBigSnackbar = function (data) {
     if (data['message'] === undefined) {
         throw new Error('Please provide a message to be displayed.');
     }
-    if (data['actionHandler'] && !data['actionText']) {
-        throw new Error('Please provide action text with the handler.');
-    }
     if (this.active) {
         this.queuedNotifications_.push(data);
     } else {
         this.active = true;
         this.message_ = data['message'];
         if (data['actions']) {
+            if (data['actions'].length != this.actionElements_.length) {
+                throw new Error('The number of action pairs and action HTML elements need to be equal.');
+            }
             data['actions'].forEach(function (actionPair) {
-                actionPair.forEach(function (actionObj) {
-                    console.log(actionObj);
-                    console.info(MaterialBigSnackbar.actions_)
-                });
-            });
+                if (actionPair.length != 2) {
+                    throw new Error('Each action pair must be an array of a text followed by a function.');
+                }
+                this.actions_.push(actionPair);
+            }, this);
         }
         if (data['timeout']) {
             this.timeout_ = data['timeout'];
-        }
-        if (data['actionHandler']) {
-            this.actionHandler_ = data['actionHandler'];
-        }
-        if (data['actionText']) {
-            this.actionText_ = data['actionText'];
         }
         this.displayBigSnackbar_();
     }
@@ -139,7 +123,7 @@ MaterialBigSnackbar.prototype.closeBigSnackbar = function () {
     this.cleanup_();
 };
 /**
- * Cleanup the bigsnackbar event listeners and accessiblity attributes.
+ * Cleanup the big snackbar event listeners and accessibility attributes.
  *
  * @private
  */
@@ -148,14 +132,14 @@ MaterialBigSnackbar.prototype.cleanup_ = function () {
     setTimeout(function () {
         this.element_.setAttribute('aria-hidden', 'true');
         this.textElement_.textContent = '';
-        if (!Boolean(this.actionElement_.getAttribute('aria-hidden'))) {
-            this.setActionHidden_(true);
-            this.actionElement_.textContent = '';
-            this.actionElement_.removeEventListener('click', this.actionHandler_);
+        for (let i = 0; i < this.actions_.length; i++) {
+            if (!Boolean(this.actionElements_[i].getAttribute('aria-hidden'))) {
+                this.setActionHidden_(true);
+                this.actionElements_[i].textContent = '';
+                this.actionElements_[i].removeEventListener('click', this.actions_[i][1]);
+            }
         }
-        this.actionHandler_ = undefined;
         this.message_ = undefined;
-        this.actionText_ = undefined;
         this.active = false;
         this.checkQueue_();
     }.bind(this), this.Constant_.ANIMATION_LENGTH);
@@ -168,11 +152,11 @@ MaterialBigSnackbar.prototype.cleanup_ = function () {
  */
 MaterialBigSnackbar.prototype.setActionHidden_ = function (value) {
     if (value) {
-        this.actionElement_.forEach(function (element) {
+        this.actionElements_.forEach(function (element) {
             element.setAttribute('aria-hidden', 'true');
         });
     } else {
-        this.actionElement_.forEach(function (element) {
+        this.actionElements_.forEach(function (element) {
             element.removeAttribute('aria-hidden');
         });
     }
