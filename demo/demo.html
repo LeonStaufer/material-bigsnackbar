@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<!-- saved from url=http://creativeit.github.io/getmdl-select/ -->
+<html lang="en" class="mdl-js">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Big Snackbar - Material Design Lite</title>
+
+    <meta name="theme-color" content="#263238">
+
+    <link rel="shortcut icon" href="http://www.getmdl.io/assets/favicon.png">
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="../material.css">
+
+    <!-- Page styles -->
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="prism.css">
+    <link rel="stylesheet" href="../large.css">
+</head>
+
+<body class="components">
+
+    <div class="image-preloader"></div>
+    <div class="mdl-layout__container">
+        <div class="docs-layout mdl-layout mdl-js-layout is-upgraded" data-upgraded=",MaterialLayout">
+            <header class="docs-layout-header mdl-layout__header is-casting-shadow">
+                <div class="mdl-layout__header-row">
+                    <span class="docs-layout-title mdl-layout-title"><a href="http://www.getmdl.io/">Material<br>Design<br>Lite</a></span>
+                </div>
+                <div class="docs-navigation__container">
+                    <nav class="docs-navigation mdl-navigation">
+                        <a href="" class="mdl-navigation__link components">Material Design Light - Big Snackbar Component</a>
+
+                        <div class="spacer"></div>
+                        <a href="https://github.com/CreativeIT/getmdl-select.git" class="mdl-navigation__link mdl-navigation__link--icon github"><i
+                            class="material-icons">link</i><span>GitHub</span></a>
+                        <a href="https://github.com/CreativeIT/getmdl-select/archive/master.zip" class="mdl-navigation__link mdl-navigation__link--icon download">
+                        <i class="material-icons"></i><span>Download</span>
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--fab mdl-button--mini-fab mdl-color--lime-A200"
+                                data-upgraded=",MaterialButton,MaterialRipple">
+                            <i class="material-icons"></i>
+                            <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+                    </a>
+                    </nav>
+                </div>
+                <i class="material-icons scrollindicator scrollindicator--right disabled"></i>
+                <i class="material-icons scrollindicator scrollindicator--left disabled"></i>
+            </header>
+            <main class="docs-layout-content mdl-layout__content mdl-color-text--grey-600">
+                <div class="content mdl-grid mdl-grid--no-spacing" id="content">
+                    <div class="subpageheader mdl-cell--12-col">Components</div>
+
+                    <link href="components.css" rel="stylesheet">
+                    <script src="snippets.js"></script>
+
+
+                    <div class="mdl-components mdl-js-components mdl-cell mdl-cell--12-col">
+                        <aside class="mdl-components__nav docs-text-styling mdl-shadow--4dp">
+
+                            <a href="" class="mdl-components__link mdl-component select is-active">
+                                <div class="mdl-components__link-image" style="background-image: url(https://getmdl.io/assets/comp_snackbar.png)">
+                                </div>
+                                <span class="mdl-components__link-text">Big Snackbar</span>
+                            </a>
+
+                        </aside>
+                        <main class="mdl-components__pages">
+                            <section id="select-section" class="mdl-components__page mdl-grid is-active">
+                                <div class="mdl-cell mdl-cell--12-col">
+                                    <div class="docs-text-styling component-title">
+                                        <h3>Big Snackbar</h3>
+
+                                        <p>Variations of the Material Design Lite <strong>Big Snackbar</strong> component.</p>
+                                    </div>
+                                    <!-- Generating snippets -->
+                                    <div class="snippet-group">
+
+                                        <div class="snippet-header">
+                                            <div class="snippet-demos">
+                                                <div class="snippet-demo-padding"></div>
+                                                <div class="snippet-demo">
+                                                    <div class="snippet-demo-container">
+                                                        <button id="bigsnackbar-button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Show</button>
+                                                        <div id="bigsnackbar-container" class="mdl-js-bigsnackbar mdl-bigsnackbar">
+                                                            <div class="mdl-bigsnackbar__text"></div>
+                                                            <button class="mdl-bigsnackbar__action" type="button"></button>
+                                                            <button class="mdl-bigsnackbar__action" type="button"></button>
+                                                        </div>
+                                                        <script>
+                                                            (function() {
+                                                                'use strict';
+                                                                var snackbarContainer = document.querySelector('#bigsnackbar-container');
+                                                                var showSnackbarButton = document.querySelector('#bigsnackbar-button');
+
+                                                                showSnackbarButton.addEventListener('click', function() {
+                                                                    'use strict';
+                                                                    var data = {
+                                                                        message: 'A simple snackbar with two actions.',
+                                                                        timeout: 3000,
+                                                                        actions: [
+                                                                            ["Yay", function() {
+                                                                                console.log("First");
+                                                                            }],
+                                                                            ["Two actions", function() {
+                                                                                console.log("Second");
+                                                                            }]
+                                                                        ]
+                                                                    };
+                                                                    snackbarContainer.MaterialBigSnackbar.showBigSnackbar(data);
+                                                                });
+                                                            }());
+
+                                                        </script>
+                                                    </div>
+                                                </div>
+                                                <div class="snippet-demo">
+                                                    <div class="snippet-demo-container">
+                                                        <button id="bigsnackbar-button2" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Show</button>
+                                                        <div id="bigsnackbar-container2" class="mdl-js-bigsnackbar mdl-bigsnackbar">
+                                                            <div class="mdl-bigsnackbar__text"></div>
+                                                            <button class="mdl-bigsnackbar__action" type="button"></button>
+                                                        </div>
+                                                        <script>
+                                                            (function() {
+                                                                    'use strict';
+                                                                    var snackbarContainer2 = document.querySelector('#bigsnackbar-container2');
+                                                                    var showSnackbarButton2 = document.querySelector('#bigsnackbar-button2');
+
+                                                                    showSnackbarButton2.addEventListener('click', function() {
+                                                                            'use strict';
+                                                                            var data = {
+                                                                                message: 'A simple snackbar with lots of text. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+                                                                                timeout: 2000,
+                                                                                actions: [
+                                                                                    ["Nice", null]
+                                                                                ]
+                                                                            };
+                                                                        snackbarContainer2.MaterialBigSnackbar.showBigSnackbar(data);
+                                                                    });
+                                                            }());
+
+                                                        </script>
+                                                    </div>
+                                                </div>
+                                                <div class="snippet-demo-padding"></div>
+                                            </div>
+
+                                        <div class="snippet-captions">
+                                            <div class="snippet-caption-padding"></div>
+                                            <div class="snippet-caption">
+                                                Big snackbar with two actions
+                                            </div>
+                                            <div class="snippet-caption">
+                                                Big snackbar with a lot of text
+                                            </div>
+                                            <div class="snippet-caption-padding"></div>
+                                        </div>
+                                        </div>
+
+                                    <div class="snippet-code">
+                                        <pre class="codepen-button-enabled" style="white-space: pre-wrap; background-color: rgba(0,0,0,.06);">
+                                            <code class="language-markup">
+                                            <xmp>
+<!-- Big snackbar with two actions -->
+<button id="bigsnackbar-button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Show</button>
+
+<div id="bigsnackbar-container" class="mdl-js-bigsnackbar mdl-bigsnackbar">
+    <div class="mdl-bigsnackbar__text"></div>
+    <button class="mdl-bigsnackbar__action" type="button"></button>
+    <button class="mdl-bigsnackbar__action" type="button"></button>
+</div>
+                                            </xmp>
+                                            </code>
+                                            </pre>
+                                        <pre class="codepen-button-enabled" style="white-space: pre-wrap; background-color: rgba(0,0,0,.06);">
+                                            <code class="language-js">
+(function() {
+  'use strict';
+  var snackbarContainer = document.querySelector('#bigsnackbar-container');
+  var showSnackbarButton = document.querySelector('#bigsnackbar-button');
+
+  showSnackbarButton.addEventListener('click', function() {
+    'use strict';
+    var data = {
+      message: 'A simple snackbar with two actions.',
+      timeout: 3000,
+      actions: [
+            ["Yay", function(){
+                console.log("First");
+            }],
+            ["Two actions", function(){
+                console.log("Second");
+            }]
+        ]};
+    snackbarContainer.MaterialBigSnackbar.showBigSnackbar(data);
+  });
+}());
+                                            </code>
+                                            </pre>
+                                    </div>
+                                        <div class="snippet-code">
+                                        <pre class="codepen-button-enabled" style="white-space: pre-wrap; background-color: rgba(0,0,0,.06);">
+                                            <code class="language-markup">
+                                            <xmp>
+<!-- Big snackbar with a lot of text -->
+<button id="bigsnackbar-button2" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Show</button>
+
+<div id="bigsnackbar-container2" class="mdl-js-bigsnackbar mdl-bigsnackbar">
+    <div class="mdl-bigsnackbar__text"></div>
+    <button class="mdl-bigsnackbar__action" type="button"></button>
+</div>
+                                            </xmp>
+                                            </code>
+                                            </pre>
+                                        <pre class="codepen-button-enabled" style="white-space: pre-wrap; background-color: rgba(0,0,0,.06);">
+                                            <code class="language-js">
+(function() {
+    'use strict';
+    var snackbarContainer2 = document.querySelector('#bigsnackbar-container2');
+    var showSnackbarButton2 = document.querySelector('#bigsnackbar-button2');
+
+    showSnackbarButton2.addEventListener('click', function() {
+            'use strict';
+            var data = {
+                message: 'A simple snackbar with lots of text. Lorem ipsum dolor sit amet, consetetur...',
+                timeout: 2000,
+                actions: [
+                    ["Nice", null]
+                ]
+            };
+        snackbarContainer2.MaterialBigSnackbar.showBigSnackbar(data);
+    });
+}());
+                                            </code>
+                                            </pre>
+                                    </div>
+                                </div>
+                                    <div class="snippet-group">
+
+                                        <div class="snippet-header">
+                                            <div class="snippet-demos">
+                                                <div class="snippet-demo-padding"></div>
+                                                <div class="snippet-demo">
+                                                    <div class="snippet-demo-container">
+                                                        <button id="bigsnackbar-button3" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Show</button>
+                                                        <div id="bigsnackbar-container3" class="mdl-js-bigsnackbar mdl-bigsnackbar">
+                                                            <div class="mdl-bigsnackbar__text"></div>
+                                                            <button class="mdl-bigsnackbar__action" type="button"></button>
+                                                        </div>
+                                                        <script>
+                                                            (function() {
+                                                                'use strict';
+                                                                var snackbarContainer3 = document.querySelector('#bigsnackbar-container3');
+                                                                var showSnackbarButton3 = document.querySelector('#bigsnackbar-button3');
+
+                                                                showSnackbarButton3.addEventListener('click', function() {
+                                                                    'use strict';
+                                                                    var data = {
+                                                                        message: 'Wohoo, a snackbar that stays forever.',
+                                                                        timeout: null,
+                                                                        actions: [
+                                                                            ["Enough now", function() {
+                                                                                snackbarContainer3.MaterialBigSnackbar.closeBigSnackbar();
+                                                                            }]
+                                                                        ]
+                                                                    };
+                                                                    snackbarContainer3.MaterialBigSnackbar.showBigSnackbar(data);
+                                                                });
+                                                            }());
+
+                                                        </script>
+                                                    </div>
+                                                </div>
+                                                <div class="snippet-demo-padding"></div>
+                                            </div>
+
+                                        <div class="snippet-captions">
+                                            <div class="snippet-caption-padding"></div>
+                                            <div class="snippet-caption">
+                                                Big snackbar that is sticky (no timeout)
+                                            </div>
+                                            <div class="snippet-caption-padding"></div>
+                                        </div>
+                                        </div>
+
+                                    <div class="snippet-code">
+                                        <pre class="codepen-button-enabled" style="white-space: pre-wrap; background-color: rgba(0,0,0,.06);">
+                                            <code class="language-markup">
+                                            <xmp>
+<button id="bigsnackbar-button3" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Show</button>
+
+<div id="bigsnackbar-container3" class="mdl-js-bigsnackbar mdl-bigsnackbar">
+    <div class="mdl-bigsnackbar__text"></div>
+    <button class="mdl-bigsnackbar__action" type="button"></button>
+</div>
+                                            </xmp>
+                                            </code>
+                                            </pre>
+                                        <pre class="codepen-button-enabled" style="white-space: pre-wrap; background-color: rgba(0,0,0,.06);">
+                                            <code class="language-js">
+(function() {
+    'use strict';
+    var snackbarContainer3 = document.querySelector('#bigsnackbar-container3');
+    var showSnackbarButton3 = document.querySelector('#bigsnackbar-button3');
+
+    showSnackbarButton3.addEventListener('click', function() {
+        'use strict';
+        var data = {
+            message: 'Wohoo, a snackbar that stays forever.',
+            timeout: null,
+            actions: [
+                ["Enough now", function() {
+                    snackbarContainer3.MaterialBigSnackbar.closeBigSnackbar();
+                }]
+            ]
+        };
+        snackbarContainer3.MaterialBigSnackbar.showBigSnackbar(data);
+    });
+}());
+                                            </code>
+                                            </pre>
+                                    </div>
+                                </div>
+                                <div class="docs-text-styling docs-readme">
+
+                                    <h2 id="introduction">Introduction</h2>
+
+                                    <p>The <strong>big snackbar</strong> component is an enhanced version of the standard MDL <a href="https://getmdl.io/components/index.html#snackbar-section">snackbar component</a>. It allows for a better display of more text, as well as, the option to have multiple actions. On top of that the timeout can be removed to have a sticky snackbar.
+                                    </p>
+
+                                    <h2 id="basic-usage">Basic usage</h2>
+
+                                    <p>
+                                        Start a snackbar with a container div element. On that container define the <code>mdl-js-snackbar</code> and <code>mdl-snackbar</code> classes. It is also beneficial to add the aria live and atomic values to this container.<br><br>
+
+                                        Within the container create a container element for the message. This element should have the class <code>mdl-snackbar__text</code>. Leave this element empty! Text is added when the snackbar is called to be shown.<br><br>
+
+                                        Second in the container, add as many button elements as you desire. Each element should have the class <code>mdl-snackbar__action</code>. It is recommended to set the type to button to make sure no forms get submitted by accident. Leave the text content empty here as well! Do not directly apply any event handlers.<br><br>
+
+                                        You now have complete markup for the snackbar to function. All that is left is within your JavaScript to call the <code>showBigSnackbar</code> method on the snackbar container. This takes a plain object to configure the snackbar content appropriately. You may call it multiple consecutive times and messages will stack.
+
+                                    </p>
+
+                                    <h2 id="markup">Markup</h2>
+
+                                    <p>All big snackbar elements should follow the basic syntax below:
+                                    </p>
+                                    <pre class="codepen-button-enabled" style="white-space: pre-wrap; background-color: rgba(0,0,0,.06);">
+                                            <code class="language-markup">
+                                            <xmp>
+<div class="mdl-js-bigsnackbar mdl-bigsnackbar">
+    <div class="mdl-bigsnackbar__text"></div>
+    <button class="mdl-bigsnackbar__action" type="button"></button>
+</div>
+                                            </xmp>
+                                            </code>
+                                            </pre>
+
+                                    <h2 id="javascript">Javascript</h2>
+
+                                    <p>To show the snackbar, follow this javascript code.
+                                    </p>
+                                    <pre class="codepen-button-enabled" style="white-space: pre-wrap; background-color: rgba(0,0,0,.06);">
+                                            <code class="language-js">
+                                            <xmp>
+var snackbarContainer = document.querySelector('#bigsnackbar-example');
+
+var data = {
+    message: 'Message',
+    actions: [
+        ["ActionText", function(event){
+            //your function
+        }]
+    ],
+    timeout: 2000 //in milliseconds
+};
+
+snackbarContainer.MaterialBigSnackbar.showBigSnackbar(data);
+                                            </xmp>
+                                            </code>
+                                            </pre>
+
+
+                                    <h2 id="data-object">Data object</h2>
+                                    <p>The BigSnackbar components <code>showBigSnackbar</code> method takes an object for snackbar data. The table below shows the properties and their usage.</p>
+
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Property</th>
+                                                <th>Effect</th>
+                                                <th>Remarks</th>
+                                                <th>Type</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>message</td>
+                                                <td>The text message to display</td>
+                                                <td>Required</td>
+                                                <td>String</td>
+                                            </tr>
+                                            <tr>
+                                                <td>timeout</td>
+                                                <td>The amount of time in milliseconds to show the snackbar. Passing <code>null</code> will result in the snackbar showing up forever</td>
+                                                <td>Optional (default infinite)</td>
+                                                <td>Integer</td>
+                                            </tr>
+                                            <tr>
+                                                <td>actions</td>
+                                                <td>An array consisting of a pair of: action text and action handler. Both must be present for a pair to work. You can specify as many pairs as you would like to add more actions</td>
+                                                <td>Optional</td>
+                                                <td>Array</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                    </div>
+                    </section>
+                    </main>
+                </div>
+
+
+        </div>
+        <section class="docs-text-styling download mdl-color--grey-800">
+            <a href="#download" class="mdl-color-text--grey-50">Download</a>
+        </section>
+        <footer class="docs-text-styling docs-footer mdl-mini-footer mdl-color--grey-900">
+            <ul>
+                <li class="mdl-mini-footer--social-btn">
+                    <a href="#" class="social-btn social-btn__github" role="button" title="GitHub"></a>
+                </li>
+            </ul>
+        </footer>
+        </main>
+    </div>
+    </div>
+
+
+    <script defer src="../material.js"></script>
+    <script defer src="main.js"></script>
+    <script defer src="../large.js"></script>
+    <script src="prism.js"></script>
+
+</body>
+
+</html>
