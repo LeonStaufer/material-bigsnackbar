@@ -141,6 +141,7 @@ MaterialBigSnackbar.prototype.cleanup_ = function () {
         }
         this.message_ = undefined;
         this.active = false;
+        this.actions_ = [];
         this.checkQueue_();
     }.bind(this), this.Constant_.ANIMATION_LENGTH);
 };
