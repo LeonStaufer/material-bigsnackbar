@@ -45,7 +45,9 @@ MaterialBigSnackbar.prototype.cssClasses_ = {
     SNACKBAR: 'mdl-bigsnackbar',
     MESSAGE: 'mdl-bigsnackbar__text',
     ACTION: 'mdl-bigsnackbar__action',
-    ACTIVE: 'mdl-bigsnackbar--active'
+    ACTIVE: 'mdl-bigsnackbar--active',
+    ACTION_LEFT: 'mdl-bigsnackbar__action--left',
+    ACTION_RIGHT: 'mdl-bigsnackbar__action--right'
 };
 /**
  * Display the bigsnackbar.
@@ -64,6 +66,9 @@ MaterialBigSnackbar.prototype.displayBigSnackbar_ = function () {
     this.textElement_.textContent = this.message_;
     this.element_.classList.add(this.cssClasses_.ACTIVE);
     this.element_.setAttribute('aria-hidden', 'false');
+
+    this.actionElements_[0].classList.add(this.cssClasses_.ACTION_LEFT);
+    this.actionElements_[this.actionElements_.length-1].classList.add(this.cssClasses_.ACTION_RIGHT);
 
     if (this.timeout_ != null) setTimeout(this.cleanup_.bind(this), this.timeout_);
 };
