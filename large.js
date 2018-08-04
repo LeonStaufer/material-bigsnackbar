@@ -63,7 +63,8 @@ MaterialBigSnackbar.prototype.displayBigSnackbar_ = function () {
     this.textElement_.textContent = this.message_;
     this.element_.classList.add(this.cssClasses_.ACTIVE);
     this.element_.setAttribute('aria-hidden', 'false');
-    setTimeout(this.cleanup_.bind(this), this.timeout_);
+
+    if(this.timeout_ != null) setTimeout(this.cleanup_.bind(this), this.timeout_);
 };
 /**
    * Show the big snackbar.
@@ -88,8 +89,6 @@ MaterialBigSnackbar.prototype.showBigSnackbar = function (data) {
         this.message_ = data['message'];
         if (data['timeout']) {
             this.timeout_ = data['timeout'];
-        } else {
-            this.timeout_ = 2750;
         }
         if (data['actionHandler']) {
             this.actionHandler_ = data['actionHandler'];
@@ -111,6 +110,14 @@ MaterialBigSnackbar.prototype.checkQueue_ = function () {
     if (this.queuedNotifications_.length > 0) {
         this.showBigSnackbar(this.queuedNotifications_.shift());
     }
+};
+/**
+   * Easier function to read for closing Snackbar
+   *
+   * @public
+   */
+MaterialBigSnackbar.prototype.closeBigSnackbar = function () {
+    this.cleanup_();
 };
 /**
    * Cleanup the bigsnackbar event listeners and accessiblity attributes.
