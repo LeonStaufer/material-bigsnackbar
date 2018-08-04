@@ -2,7 +2,7 @@
 
 The big snackbar component is an enhanced version of the standard [MDL snackbar component](https://getmdl.io/components/index.html#snackbar-section). It allows for a better display of more text, as well as, the option to have multiple actions. On top of that the timeout can be removed to have a sticky snackbar.
 
-![assets/twoActions.JPG](assets/overview.JPG)
+![Screenshot of page using big snackbars](https://raw.githubusercontent.com/LeonStaufer/material-bigsnackbar/master/assets/overview.jpg)
 
 Visit the live preview and documentation [here](https://).
 
@@ -58,4 +58,4 @@ The ``data`` object is explained below:
 
 ## License
 
-This project uses the same license as [Material Design Lite](https://github.com/google/material-design-lite), [Apache License 2.0]().
+This project uses the same license as [Material Design Lite](https://github.com/google/material-design-lite), [Apache License 2.0](https://github.com/LeonStaufer/material-bigsnackbar/blob/master/LICENSE).
