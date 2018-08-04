@@ -68,7 +68,7 @@ MaterialBigSnackbar.prototype.displayBigSnackbar_ = function () {
     this.element_.setAttribute('aria-hidden', 'false');
 
     this.actionElements_[0].classList.add(this.cssClasses_.ACTION_LEFT);
-    this.actionElements_[this.actionElements_.length-1].classList.add(this.cssClasses_.ACTION_RIGHT);
+    this.actionElements_[this.actionElements_.length - 1].classList.add(this.cssClasses_.ACTION_RIGHT);
 
     if (this.timeout_ != null) setTimeout(this.cleanup_.bind(this), this.timeout_);
 };
