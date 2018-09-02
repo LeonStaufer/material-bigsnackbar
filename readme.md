@@ -8,13 +8,16 @@ Visit the live preview and documentation [here](https://leonstaufer.github.io/ma
 
 ## Basic usage
 
-Install the big snackbar component by adding both the ``BigSnackbar.js`` as well as ``BigSnackbar.css`` to your project.
+Install the big snackbar component by adding both the ``BigSnackbar.js`` as well as ``BigSnackbar.css`` to your project. If you are not loading MDL, you will need the `handler.js` file as well, as this upgrades the component.
 
 ```html
 <!-- import MDL -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="path_to/material-design-lite/material.min.css">
 <script defer src="path_to/material-design-lite/material.min.js"></script> 
+
+<!-- import handler.js if you are not loading the mdl js
+<script defer src="path_to/handler.js"></script> -->
   
 <!-- import Big Snackbar -->   
 <link rel="stylesheet" href="path_to/BigSnackbar.css">
